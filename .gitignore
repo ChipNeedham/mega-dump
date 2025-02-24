@@ -1,3 +1,4 @@
 full_dump.sql
 mysql_data/
 .env
+.idea/
