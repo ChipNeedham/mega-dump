@@ -1,0 +1,27 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: dev-mysql
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql-config/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - "3366:3306"
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: dev-phpmyadmin
+    restart: always
+    env_file:
+      - .env
+    environment:
+      PMA_HOST: mysql
+    ports:
+      - "8888:80"
+
+volumes:
+  mysql_data:
+    driver: local
